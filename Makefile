@@ -2,7 +2,7 @@
 TARGET   = deep
 
 CC       = gcc
-LINKER   = gcc -o
+LINKER   = gcc -o 
 # change these to set the proper directories where each files shoould be
 SRCDIR   = src
 OBJDIR   = obj
@@ -14,14 +14,14 @@ OBJECTS  := $(SOURCES:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 rm       = rm -f
 
 # linking flags here
-LFLAGS   = -Wall -I. 
+LFLAGS   = -Wall -I. -lpcap 
 
 # compiling flags here
-CFLAGS   =  -std=c99 -Wall -Werror -Wextra -O2
+CFLAGS   =   -Wall  -Wextra -O2
 
 $(BINDIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p bin/
-	@$(LINKER) $@ $(LFLAGS) $(OBJECTS) 
+	@$(LINKER) $@  $(OBJECTS) $(LFLAGS)
 	@echo "Linking complete!"
 
 $(OBJECTS): $(OBJDIR)/%.o : $(SRCDIR)/%.c
